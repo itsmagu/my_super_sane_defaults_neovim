@@ -26,6 +26,24 @@ require("lazy").setup({
   spec = {
 	  "nvim-treesitter/nvim-treesitter",
 	  {
+  "folke/which-key.nvim",
+  event = "VeryLazy",
+  opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  },
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Local Keymaps (which-key)",
+    },
+  },
+},
+	  {
   'ribru17/bamboo.nvim',
   lazy = false,
   priority = 1000,
@@ -51,11 +69,14 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth=4
 vim.opt.showbreak="..."
-
+vim.g.zig_fmt_parse_errors = 0
+vim.g.zig_fmt_autosave = 0
 -- Keymaps
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.keymap.set('n','<leader><F1>','<cmd>!odin run .<CR>')
+vim.keymap.set('n','.',"<nop>")
+vim.keymap.set("n", "Q", "<nop>")
 
 -- End
 print("Running with init.lua")
