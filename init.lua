@@ -24,14 +24,76 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
+-- TREESITTER
 		"nvim-treesitter/nvim-treesitter",
+-- WHICH-KEY
 		{
 			"folke/which-key.nvim",
 			event = "VeryLazy",
   			opts = {
-    		-- your configuration comes here
-    		-- or leave it empty to use the default settings
-    		-- refer to the configuration section below
+				preset = "helix",
+				spec = {
+					{"<leader>c",group="compile"},
+				},
+				plugins = {
+					spelling = {
+						enabled = false,
+						suggestions = 0,
+					},
+				},
+				win = {
+					no_overlap = true,
+					padding = {0,0},
+					title = true,
+					title_pos = "left",
+				},
+				sort = {"group","local","case"},
+				expand = 1,
+				icons = {
+					breadcrumb = '..',
+					separator = '=>',
+					group = '++',
+					ellipsis = '....',
+					mappings = true,
+					colors = true,
+					keys = {
+						Up = '/\\',
+						Down = '\\/',
+						Left = '<-',
+						Right = '->',
+						C = 'C ',
+						M = 'M ',
+						D = 'D ',
+						S = 'S ',
+						CR = 'CR',
+						Esc = 'ESC',
+						ScrollWheelDown = 'SWD',
+						ScrollWheelUp = 'SWU',
+						NL = 'NL',
+						BS = 'BS',
+						Space = 'SPC',
+						Tab = 'TAB',
+						F1 = 'F1',
+						F2 = 'F2',
+						F3 = 'F3',
+						F4 = 'F4',
+						F5 = 'F5',
+						F6 = 'F6',
+						F7 = 'F7',
+						F8 = 'F8',
+						F9 = 'F9',
+						F10 = 'F10',
+						F11 = 'F11',
+						F12 = 'F12',
+					},
+				},
+				show_help = true,
+				show_keys = true,
+      			disable = {
+        			ft = {},
+        			bt = {},
+      			},
+      			debug = false, -- enable wk.log in the current directory
   			},
   			keys = {
     			{
@@ -43,6 +105,7 @@ require("lazy").setup({
     			},
   			},
 		},
+--BAMBOO THEME
 	  	{
   			'ribru17/bamboo.nvim',
   			lazy = false,
@@ -69,6 +132,7 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth=4
 vim.opt.showbreak="..."
+vim.opt.scrolloff=6
 vim.g.zig_fmt_parse_errors = 0
 vim.g.zig_fmt_autosave = 0
 
@@ -84,7 +148,7 @@ end
 -- Keymaps
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
-vim.keymap.set('n','<leader><F1>','<cmd>!odin run .<CR>')
+vim.keymap.set('n','<leader>cO','<cmd>!odin run .<CR>')
 vim.keymap.set('n','.',"<nop>")
 vim.keymap.set("n", "Q", "<nop>")
 
