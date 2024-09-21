@@ -149,16 +149,16 @@ end
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
-
 vim.keymap.set('n','<leader>pe',vim.cmd.Ex, {desc = "Explore in work dir"})
 vim.keymap.set('n','<leader>pO','<cmd>!odin run .<CR>', {desc = "Odin run in work dir"})
-vim.keymap.set('n','<leader>pZ','<cmd>!zig build .<CR>', {desc = "Zig run in work dir"})
+vim.keymap.set('n','<leader>pZ','<cmd>!zig build run<CR>', {desc = "Zig run in work dir"})
 vim.keymap.set('n','<leader>pD','<cmd>!dotnet run .<CR>', {desc = "Dotnet run in work dir"})
 --vim.keymap.set('n','<leader><leader>','<cmd>so<CR>',{desc = "source"})
 --vim.keymap.set('v','<leader><leader>',"<cmd>'<,'>so<CR>",{desc = "source selection"})
 
 vim.keymap.set('n','.',"<nop>")
 vim.keymap.set('n','Q', "<nop>")
+vim.keymap.set('n','<C-_>','<cmd>noh<CR>')
 
 -- End
 print("Running with init.lua")
