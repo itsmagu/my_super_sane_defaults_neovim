@@ -25,7 +25,18 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
 	spec = {
 -- TREESITTER
-		"nvim-treesitter/nvim-treesitter",
+		{
+			"nvim-treesitter/nvim-treesitter",
+			build = ":TSUpdate",
+			config = function()
+				require("nvim-treesitter.configs").setup({
+					ensure_installed = {"odin","markdown","asm","lua"},
+					sync_install = false,
+					highlight = {enable=true},
+					indent = {enable = true},
+				})
+			end
+		},
 -- WHICH-KEY
 		{
 			"folke/which-key.nvim",
@@ -105,24 +116,22 @@ require("lazy").setup({
     			},
   			},
 		},
---BAMBOO THEME
+-- THEME
 	  	{
-  			'ribru17/bamboo.nvim',
-  			lazy = false,
-  			priority = 1000,
-  			config = function()
-    			require('bamboo').setup {
-      				-- optional configuration here
-    			}
-    			require('bamboo').load()
-  			end,
+			'sainnhe/sonokai',
+      		lazy = false,
+      		priority = 1000,
+      		config = function()
+        		-- Optionally configure and load the colorscheme
+        		-- directly inside the plugin declaration.
+        		vim.g.sonokai_enable_italic = true
+        		vim.cmd.colorscheme('sonokai')
+      		end
 		},
+-- END OF PLUGINS
 	},
-  	-- Configure any other settings here. See the documentation for more details.
-  	-- colorscheme that will be used when installing plugins.
-  	install = { colorscheme = { "bamboo" } },
   	-- automatically check for plugin updates
-  	checker = { enabled = true },
+  	checker = { enabled = false },
 })
 
 -- Sets
