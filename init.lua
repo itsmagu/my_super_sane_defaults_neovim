@@ -1,3 +1,4 @@
+vim.opt.shadafile = "NONE"
 -- Install Lazy if it's not installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -41,6 +42,10 @@ require("lazy").setup({
 				})
 			end
 		},
+    		{
+    			'nvim-telescope/telescope.nvim', tag = '0.1.8',
+      			dependencies = { 'nvim-lua/plenary.nvim' },
+    		},
 -- WHICH-KEY
 		{
 			"folke/which-key.nvim",
@@ -199,6 +204,15 @@ vim.keymap.set('n','<leader>paD',function()
 end, {desc = "Dotnet run in workdir with args"})
 --vim.keymap.set('n','<leader><leader>','<cmd>so<CR>',{desc = "source"})
 --vim.keymap.set('v','<leader><leader>',"<cmd>'<,'>so<CR>",{desc = "source selection"})
+
+-- Keymaps : Telescope
+local telescope = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', telescope.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', telescope.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', telescope.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope help tags' })
+
+-- Fix Defualts
 
 vim.keymap.set('n','.',"<nop>")
 vim.keymap.set('n','Q', "<nop>")
